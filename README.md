@@ -1,3 +1,3 @@
-*Introduction
+# Introduction
 
 This project will be used as a mini-wiki.  Storing some links to knowledges, tools, and ideas.
