@@ -3,7 +3,7 @@ set bell-style none
 
 ## Cygwin only
 ## http://cygwin.com/ml/cygwin/2010-04/msg00333.html
-# post-fix tilde for cygwin
+# post-fix tilde for cygwin (page up/down)
 "\e[5~": history-search-backward
 "\e[6~": history-search-forward
 ## move left-right (ctrl left/right).  Does not work on cygwin

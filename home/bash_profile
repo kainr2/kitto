@@ -10,3 +10,33 @@ setterm -blength 0
 # $(dircolors) effectively sets the LS_COLORS environment variable.
 # http://unix.stackexchange.com/questions/94299/dircolors-modify-color-settings-globaly
 eval "$(dircolors /etc/DIR_COLORS)"
+eval "$(dircolors ~/.dir_colors)"
+
+
+
+
+#################
+## LINUX
+#################
+# History Options
+#
+# Don't put duplicate lines in the history.
+# export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
+#
+# Ignore some controlling instructions
+# HISTIGNORE is a colon-delimited list of patterns which should be excluded.
+# The '&' is a special pattern which suppresses duplicate entries.
+# export HISTIGNORE=$'[ \t]*:&:[fb]g:exit'
+export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls' # Ignore the ls command as well
+export HISTCONTROL=ignoredups
+export HISTSIZE=10000
+export HISTFILESIZE=1000000
+
+
+export PATH="/bin:/usr/local/bin:/sbin:/usr/sbin:$PATH"
+
+### Awesomeness
+## http://tldp.org/LDP/abs/html/internalvariables.html
+export CDPATH="/cygdrive"
+
+
