@@ -1,0 +1,19 @@
+## disable the beep
+set bell-style none
+
+## Cygwin only
+## http://cygwin.com/ml/cygwin/2010-04/msg00333.html
+# post-fix tilde for cygwin
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
+## move left-right (ctrl left/right).  Does not work on cygwin
+#"\e[1;5C": forward-word
+#"\e[1;5D": backword-word
+
+## https://www.cygwin.com/cygwin-ug-net/setup-files.html
+# Ignore case while completing
+set completion-ignore-case on
+# Make Bash 8bit clean
+set meta-flag on
+set convert-meta off
+set output-meta on
