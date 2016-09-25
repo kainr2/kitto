@@ -3,22 +3,14 @@ if [ -f "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"
 fi
 
-# Another one for terminal beeping
-setterm -blength 0
-
+# Prompt color
 # `dircolors` prints out `LS_COLORS='...'; export LS_COLORS`, so eval'ing
 # $(dircolors) effectively sets the LS_COLORS environment variable.
 # http://unix.stackexchange.com/questions/94299/dircolors-modify-color-settings-globaly
 eval "$(dircolors /etc/DIR_COLORS)"
 eval "$(dircolors ~/.dir_colors)"
 
-
-
-
-#################
-## LINUX
-#################
-# History Options
+# Prompt History Options
 #
 # Don't put duplicate lines in the history.
 # export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
@@ -32,11 +24,12 @@ export HISTCONTROL=ignoredups
 export HISTSIZE=10000
 export HISTFILESIZE=1000000
 
+# Disable beep
+CMDTEMP=$(command -v setterm)
+if [ "${CMDTEMP}" != "" ]; then
+  setterm -blength 0
+fi;
 
+# Export PATH.  Put here, so it won't recursively reload in .bashrc
 export PATH="/bin:/usr/local/bin:/sbin:/usr/sbin:$PATH"
-
-### Awesomeness
-## http://tldp.org/LDP/abs/html/internalvariables.html
-export CDPATH="/cygdrive"
-
 

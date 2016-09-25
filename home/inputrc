@@ -1,19 +1,56 @@
-## disable the beep
-set bell-style none
+# The latest version as installed by the Cygwin Setup program can
+# always be found at /etc/defaults/etc/skel/.inputrc
 
-## Cygwin only
-## http://cygwin.com/ml/cygwin/2010-04/msg00333.html
-# post-fix tilde for cygwin (page up/down)
+# Modifying /etc/skel/.inputrc directly will prevent
+# setup from updating it.
+
+# To include this file:  $include <filepath>
+
+# Addition from ...
+# http://cygwin.com/ml/cygwin/2010-04/msg00333.html
+# http://stackoverflow.com/questions/1030182/how-do-i-change-bash-history-completion-to-complete-whats-already-on-the-line
+### fix ctrl+(left|right)
+### PageUp   -- Previous command with the same prefix
+### PageDown -- Next command with the esame prefix
+###
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
 "\e[5~": history-search-backward
 "\e[6~": history-search-forward
-## move left-right (ctrl left/right).  Does not work on cygwin
-#"\e[1;5C": forward-word
-#"\e[1;5D": backword-word
 
-## https://www.cygwin.com/cygwin-ug-net/setup-files.html
+##"\e[1;5A": history-search-backward
+##"\e[1;5B": history-search-forward
+
+# the following line is actually
+# equivalent to "\C-?": delete-char
+"\e[2~": quoted-insert
+"\e[3~": delete-char
+
+# VT
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+
+# kvt
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+
+# rxvt and konsole (i.e. the KDE-app...)
+"\e[7~": beginning-of-line
+"\e[8~": end-of-line
+
+# VT220
+"\eOH": beginning-of-line
+"\eOF": end-of-line
+
+
 # Ignore case while completing
+# https://www.cygwin.com/cygwin-ug-net/setup-files.html
 set completion-ignore-case on
 # Make Bash 8bit clean
 set meta-flag on
+set input-meta on
 set convert-meta off
 set output-meta on
+
+# Don't ring bell on completion
+set bell-style none
