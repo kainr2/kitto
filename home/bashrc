@@ -34,11 +34,12 @@ PS1="\[\033[36m\][\T]\[\033[32m\] \w $ \[\033[0m\]"
 # Common alias
 ##############################
 alias lsv='ls --color=auto --format=vertical'
-alias ls='ls -hF --color=tty'   # classify files in colour
-alias ll='ls -l';
-alias la='ls -A';
-alias rm='rm -i';
-alias vi='vim';
+alias ls='ls --color=auto'
+alias ll='ls -l'
+alias lla='ls -al'
+alias la='ls -A'
+alias rm='rm -i'
+alias vi='vim'
 
 # Grep
 alias grep='grep --color=auto'                # show differences in colour

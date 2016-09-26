@@ -44,3 +44,5 @@ set laststatus=2
 " Browse compressed files automatically
 " http://vim.1045645.n5.nabble.com/How-to-vim-a-class-file-in-a-jar-file-with-the-java-decompiler-executed-td1151967.html
 au BufReadCmd *.jar,*.ear,*.war call zip#Browse(expand("<amatch>"))
+
+
