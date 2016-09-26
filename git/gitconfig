@@ -1,0 +1,12 @@
+[core]
+    autocrlf = input
+    eol = lf
+    editor = vim
+[merge]
+    tool = meld
+[mergetool "meld"]
+    path = "C:\\Program Files (x86)\\Meld\\meld\\meld.exe"
+[diff]
+    tool = meld
+[difftool "meld"]
+    path = "C:\\Program Files (x86)\\Meld\\meld\\meld.exe"
