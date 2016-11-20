@@ -10,6 +10,8 @@
     autocrlf = input
     eol = lf
     editor = vim
+[push]
+    default = simple
 [merge]
     tool = meld
 [mergetool "meld"]
