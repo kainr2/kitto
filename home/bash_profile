@@ -23,6 +23,8 @@ export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls' # Ignore the ls command as well
 export HISTCONTROL=ignoredups
 export HISTSIZE=10000
 export HISTFILESIZE=1000000
+export HISTTIMEFORMAT="%m/%d/%y %T "
+
 
 # Disable beep
 CMDTEMP=$(command -v setterm)
