@@ -1,50 +1,7 @@
-# source this file to use it...
-#
-# source the users bashrc if it exists
-if [ -f "${HOME}/.bashrc" ] ; then
-  source "${HOME}/.bashrc"
+# NOTE: Just copy this bash_profile to your folder
+if [ -f ${HOME}/.bashrc ]; then
+   source ${HOME}/.bashrc
 fi
-
-# Prompt color
-# `dircolors` prints out `LS_COLORS='...'; export LS_COLORS`, so eval'ing
-# $(dircolors) effectively sets the LS_COLORS environment variable.
-# http://unix.stackexchange.com/questions/94299/dircolors-modify-color-settings-globaly
-eval "$(dircolors /etc/DIR_COLORS)"
-eval "$(dircolors ~/.dir_colors)"
-
-# Undo escaping $ in a bash4+
-# http://askubuntu.com/questions/70750/how-to-get-bash-to-stop-escaping-during-tab-completion
-# https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
-shopt -s direxpand
-
-# Prompt History Options
-# Don't put duplicate lines in the history.
-# export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-#
-# Ignore some controlling instructions
-# HISTIGNORE is a colon-delimited list of patterns which should be excluded.
-# The '&' is a special pattern which suppresses duplicate entries.
-# export HISTIGNORE=$'[ \t]*:&:[fb]g:exit'
-export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls:ll' # Ignore the ls command as well
-export HISTCONTROL=ignoredups
-export HISTSIZE=10000
-export HISTFILESIZE=1000000
-export HISTTIMEFORMAT="%m/%d/%y %T "
 
 # Export PATH.  Put here, so it won't recursively reload in .bashrc
 export PATH="/bin:/usr/local/bin:/sbin:/usr/sbin:$PATH"
-
-# Disable beep
-CMDTEMP=$(command -v setterm)
-if [ "${CMDTEMP}" != "" ]; then
-  setterm -blength 0
-fi;
-
-# Basic alias
-alias beep='echo -en "\a" > /dev/tty5'  # Beep sound
-alias grep='grep --color=auto'
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-alias vi='vim'
-

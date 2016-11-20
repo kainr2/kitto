@@ -1,6 +1,12 @@
 "===============================================================================
 " Include vimrc...
-" source /path/to/this/vimrc
+" :let my_vimrc = "/path/to/github/kitto/home/vimrc"
+" :if !empty(glob(my_vimrc))
+"" :   echo "source " my_vimrc
+" :   execute "source " . my_vimrc
+" :else
+" :   echo "Cannot find file: " my_vimrc
+" :endif
 "
 " Message from...
 " * http://phuzz.org/vimrc.html
