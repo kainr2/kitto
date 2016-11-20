@@ -1,11 +1,12 @@
+# To include this file:  
+#    $include <filepath>
+#
 # The latest version as installed by the Cygwin Setup program can
 # always be found at /etc/defaults/etc/skel/.inputrc
-
+#
 # Modifying /etc/skel/.inputrc directly will prevent
 # setup from updating it.
-
-# To include this file:  $include <filepath>
-
+#
 # Addition from ...
 # http://cygwin.com/ml/cygwin/2010-04/msg00333.html
 # http://stackoverflow.com/questions/1030182/how-do-i-change-bash-history-completion-to-complete-whats-already-on-the-line

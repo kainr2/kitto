@@ -1,3 +1,5 @@
+# source this file to use it...
+#
 # source the users bashrc if it exists
 if [ -f "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"

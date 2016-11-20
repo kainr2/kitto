@@ -1,10 +1,12 @@
 "===============================================================================
+" Include vimrc...
+" source /path/to/this/vimrc
+"
 " Message from...
 " * http://phuzz.org/vimrc.html
 " * http://www.vim.org/scripts/script_search_results.php
 " * http://archive09.linux.com/feature/120126
 " * OPTION -- http://vimdoc.sourceforge.net/htmldoc/options.html
-" * Include this vimrc: source <filepath>
 "===============================================================================
 set ls=2            " always show status line
 set tabstop=4       " numbers of spaces of tab character
