@@ -56,7 +56,8 @@ export HISTSIZE=10000
 export HISTFILESIZE=1000000
 export HISTTIMEFORMAT="%m/%d/%y %T "
 
-export LANG=$(locale -uU)
+# locale -uU
+export LANG="en_US.UTF-8"
 
 #################
 ## Cygwin only
