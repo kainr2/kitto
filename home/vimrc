@@ -57,3 +57,8 @@ au BufReadCmd *.jar,*.ear,*.war call zip#Browse(expand("<amatch>"))
 " Set *.log to be log4j format
 " http://www.vim.org/scripts/script.php?script_id=4111
 autocmd BufRead,BufNewFile *.log set syntax=log4j
+
+" Set *.gradle for groovy language
+" https://gist.github.com/uarun/1123563
+autocmd BufRead,BufNewFile *.gradle setf groovy
+
