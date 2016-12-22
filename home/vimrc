@@ -47,6 +47,9 @@ set laststatus=2    " always show status line
 " colorscheme list are in "/usr/share/vim/vim*/colors"
 syntax on            " syntax highlight
 colorscheme evening  " vim color scheme
+hi Search cterm=NONE ctermfg=yellow ctermbg=green
+
+
 "autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 
