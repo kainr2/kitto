@@ -83,6 +83,7 @@ alias ll='ls -l'
 alias lla='ls -al'
 alias la='ls -A'
 # Grep
+alias tailfile='tail -n +1'     # tail a file with filename header
 alias grep='grep --color=auto'       # show differences in colour
 alias egrep='egrep --color=auto'     # show differences in colour
 alias fgrep='fgrep --color=auto'     # show differences in colour
