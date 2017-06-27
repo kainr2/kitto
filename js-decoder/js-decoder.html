@@ -1,0 +1,261 @@
+<html>
+<head>
+<title>JS-Decoder: various conversion tools in JS</title>
+<meta name="author" content="kitto">
+<meta charset="utf-8"/>
+
+
+<style>
+#input {
+	width: 90%;
+	height: 150px;
+}
+#input.min { 
+	height: 40px;
+}
+
+#output {
+	width: 90%;
+	height: 250px;
+}
+#output.max {
+	height: 360px;
+}
+
+#divin button {
+	width: 200px;
+}
+#divout button {
+	width: 150px;
+}
+</style>
+</head>
+<body>
+
+<div id="divin">
+	<h3>INPUT: <button id="toggle_textarea_size" type="button">Toggle Display</button></h3>
+	<textarea id="input" class="textarea-dim" spellcheck="false">lZHRS8MwEMb%2FlZL3tU1aSxfWQnEMBhVlnXvwRUJ2c4H2UnPp8M%2B3rYrzRRHu5bj7vu%2Fyy4pU14pe%0AVoM%2F4w5eByAfvHUtkvyYFGxwKK0iQxJVByS9lk11V0sRxrJ31lttWxZUROC8sXhrkYYOXAPuYjQ8%0A7uqCnb3vSUZRa18MLgz6EK3zFkNtu2gy25jWj5Lmfj%2FmR1NyPa2yYD32BtVk%2FIcNkY3MsZ%2FtBAs2%0A1mmYX1Wwk2oJWLBdF%2ByZ8%2BQkVJbCMUl5luTLZa5jkas4S7NEJHxcowdFZC7wLSQaYIvkFfqCiZhn%0Ai3gssReJ5Km8ycOM508sOICj%2BdARDStXM0A5i90109%2BRqi%2BQrPwftlV0HVh%2Btj%2B%2FtnwH</textarea>
+	<br />
+	<button id="encode_base64" type="button">Encode Base64</button>
+	<button id="decode_base64" type="button">Decode Base64</button>
+	<button id="encode_base64_urlsafe" type="button">Encode Base64 URL Safe</button>
+	<button id="decode_base64_urlsafe" type="button">Decode Base64 URL Safe</button>
+	<br />
+	<button id="encode_url" type="button">URI Encode</button>
+	<button id="decode_url" type="button">URI Decode</button>
+	<button id="none" type="button" disabled>&#8656; No encode/decode<code>[<strong>:/;?</strong>]</code></button>
+	<!--
+	<span>&#8656; No encode/decode: <code>[<strong>:/;?</strong>]</code></span>
+	-->
+	<button id="encode_url_component" type="button">URI Component Encode</button>
+	<button id="decode_url_component" type="button">URI Component Decode</button>
+	<br />
+	<button id="saml_decode" type="button">Decode SAML</button>
+	<button id="jwt_decode" type="button">Decode JWT</button>
+	<button id="beautify_json" type="button">Beautify Json</button>
+</div>
+
+<div id="divout">
+	<h3>OUTPUT: <button id="copy_to_input" type="button">Copy To Input</button></h3>
+	<textarea id="output" class="textarea-dim" spellcheck="false"></textarea>
+</div>
+
+<div id="divinfo">
+<pre>
+Version 1.0.1
+* Disable spellchecker
+* Resize input/output
+Version 1.0
+* Initial version
+* Based on -- https://github.com/kallu/SAMLdecode
+</pre>
+</div>
+
+</body>
+</html>
+
+
+
+<!-- /// not needed
+<script src="base64.js"></script>
+<script src="uneval.js"></script>
+<script src="jquery-1.3.2.min.js"></script>
+<script src="rawdeflate.js"></script>
+<script src="formatxml.js"></script>
+-->
+<script src="./lib/rawinflate.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+
+function getInputStr(objId) {
+	return document.getElementById(objId).value;
+}
+
+function setOutputStr(objId, objValue) {
+	document.getElementById(objId).innerHTML = htmlEncode(objValue);
+	toggleDisplay();
+}
+
+// http://stackoverflow.com/questions/1219860/html-encoding-in-javascript-jquery
+function htmlEncode( html ) {
+    return document.createElement( 'a' ).appendChild( 
+        document.createTextNode( html ) ).parentNode.innerHTML;
+};
+
+function htmlDecode( html ) {
+    var a = document.createElement( 'a' ); a.innerHTML = html;
+    return a.textContent;
+};
+
+// formatXml by Darin Dimitrov -- http://stackoverflow.com/questions/376373/pretty-printing-xml-with-javascript
+// NOTE: replaced jquery with forEach()
+function formatXml(xml) {
+    var formatted = '';
+    var reg = /(>)(<)(\/*)/g;
+    xml = xml.replace(reg, '$1\r\n$2$3');
+
+    reg = /("|')\s+([^"']+)?/g;
+    xml = xml.replace(reg, '$1\r\  $2');
+    var pad = 0;
+    xml.split('\r\n').forEach(function(element, index, array) {
+        var indent = 0;
+        if (element.match( /.+<\/\w[^>]*>$/ )) {
+            indent = 0;
+        } else if (element.match( /^<\/\w/ )) {
+            if (pad != 0) {
+                pad -= 1;
+            }
+        } else if (element.match( /^<\w[^>]*[^\/]>.*$/ )) {
+            indent = 1;
+        } else {
+            indent = 0;
+        }
+        var padding = '';
+        for (var i = 0; i < pad; i++) {
+            padding += '  ';
+        }
+        formatted += padding + element + '\r\n';
+        pad += indent;
+    });
+    return formatted;
+}
+
+
+function encodeBase64Url(str){
+    return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
+}
+function decodeBase64Url(str){
+    str = (str + '===').slice(0, str.length + (str.length % 4));
+    return str.replace(/-/g, '+').replace(/_/g, '/');
+}
+function beautifyJson(jsObj){
+	return JSON.stringify(jsObj, null, 2); 
+}
+function resetDisplay() {
+	document.getElementById("input").classList.remove("min");
+	document.getElementById("output").classList.remove("max");
+}
+function toggleDisplay() {
+	document.getElementById("input").classList.toggle("min");
+	document.getElementById("output").classList.toggle("max");
+}
+
+
+/// BASE64
+document.getElementById("encode_base64").addEventListener("click", function(){
+	setOutputStr("output", btoa(getInputStr("input")));
+});
+document.getElementById("decode_base64").addEventListener("click", function(){
+	var output = "";
+	try {
+		output = atob(getInputStr("input"));
+	} catch (err) {
+		output = "Error: " + err.message;
+	}
+	setOutputStr("output", output);
+});
+document.getElementById("encode_base64_urlsafe").addEventListener("click", function(){
+	setOutputStr("output", encodeBase64Url(getInputStr("input")));
+});
+document.getElementById("decode_base64_urlsafe").addEventListener("click", function(){
+	setOutputStr("output", decodeBase64Url(getInputStr("input")));
+});
+
+/// URI
+document.getElementById("encode_url").addEventListener("click", function(){
+	setOutputStr("output", encodeURI(getInputStr("input")));
+});
+document.getElementById("decode_url").addEventListener("click", function(){
+	setOutputStr("output", decodeURI(getInputStr("input")));
+});
+document.getElementById("encode_url_component").addEventListener("click", function(){
+	setOutputStr("output", encodeURIComponent(getInputStr("input")));
+});
+document.getElementById("decode_url_component").addEventListener("click", function(){
+	setOutputStr("output", decodeURIComponent(getInputStr("input")));
+});
+
+/// SAML2
+document.getElementById("saml_decode").addEventListener("click", function(){
+	var chunk = getInputStr("input");
+	var requestPos = chunk.indexOf("SAMLRequest");
+	if (requestPos > 0)
+	{
+		chunk = chunk.split("SAMLRequest=")[1].split("&")[0];
+	}
+	var partC = RawDeflate.inflate(atob(decodeURIComponent(chunk)));
+	setOutputStr("output", formatXml(partC));
+});
+
+/// JWT
+document.getElementById("jwt_decode").addEventListener("click", function(){
+	var chunk = getInputStr("input").split('.');
+	var output = "Invalid JWT data";
+	if (chunk.length == 3)
+	{
+		var header = JSON.parse(atob(decodeBase64Url(chunk[0])));
+		var body   = JSON.parse(atob(decodeBase64Url(chunk[1])));
+		output = "///// HEADER\n"
+			+ beautifyJson(header) + "\n"
+			+ "///// PAYLOAD\n"
+			+ beautifyJson(body) + "\n";
+	}
+	setOutputStr("output", output);
+});
+
+document.getElementById("beautify_json").addEventListener("click", function(){
+	var input = JSON.parse(getInputStr("input"));
+	setOutputStr("output", beautifyJson(input));
+});
+
+
+/// INPUT & OUTPUT
+document.getElementById("input").addEventListener("click", function(){
+	resetDisplay();
+});
+document.getElementById("toggle_textarea_size").addEventListener("click", function(){
+	toggleDisplay();
+});
+document.getElementById("copy_to_input").addEventListener("click", function(){
+	document.getElementById("input").value = document.getElementById("output").value;
+});
+
+//]]>
+</script>
+
+<!--
+* http://prismjs.com/
+<pre><code class="language-xml" id="output">
+&lt;saml2p:AuthnRequest xmlns:saml2p=&quot;urn:oasis:names:tc:SAML:2.0:protocol&quot; AssertionConsumerServiceURL=&quot;https://login-int.norton.com/SAMLFilterSSOTest/samlLogin&quot; Destination=&quot;https://login-int.norton.com/sso/idp/SAML2&quot; ForceAuthn=&quot;false&quot; ID=&quot;_113f2a64ed341638998c028a06463231&quot; IsPassive=&quot;false&quot; IssueInstant=&quot;2016-06-02T23:14:58.618Z&quot; Version=&quot;2.0&quot;&gt;
+  &lt;saml2:Issuer xmlns:saml2=&quot;urn:oasis:names:tc:SAML:2.0:assertion&quot;&gt;https://login-int.norton.com/SAMLFilterSSOTest&lt;/saml2:Issuer&gt;
+&lt;/saml2p:AuthnRequest&gt;
+</code></pre>
+
+<link href="prism.css" rel="stylesheet" />
+<script src="prism.js"></script>
+-->
+
+
+
+
+
