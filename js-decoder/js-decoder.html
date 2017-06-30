@@ -62,6 +62,9 @@
 
 <div id="divinfo">
 <pre>
+Version 1.1.0
+* Use "pako.js" for SAML deflation
+* Error handling for JSON
 Version 1.0.1
 * Disable spellchecker
 * Resize input/output
@@ -82,8 +85,9 @@ Version 1.0
 <script src="jquery-1.3.2.min.js"></script>
 <script src="rawdeflate.js"></script>
 <script src="formatxml.js"></script>
--->
 <script src="./lib/rawinflate.js"></script>
+-->
+<script src="./lib/pako.js"></script>
 <script type="text/javascript">
 //<![CDATA[
 
@@ -196,6 +200,41 @@ document.getElementById("decode_url_component").addEventListener("click", functi
 });
 
 /// SAML2
+//  * tool -- https://www.samltool.com/encode.php
+//  * pako.js -- https://github.com/nodeca/pako
+function deflateToSaml2(xml_input)
+{
+	var uint8array = new TextEncoder("utf-8").encode(xml_input);
+	var deflator = new pako.Deflate();
+	deflator.push(uint8array, true);       // add data chuck, and true as the end.
+	var ui8a_zlib_data = deflator.result;
+	var compressed_data = ui8a_zlib_data.subarray(2, ui8a_zlib_data.length-4);  // Remove header and adler32
+	var b64_ascii = btoa(String.fromCharCode.apply(null, compressed_data));
+	return b64_ascii;
+}
+
+function inflateFromSaml2(b64_input)
+{
+	// Decode base64 and convert to int
+	var compressed_data = atob(b64_input).split("").map(function(c) { return c.charCodeAt(0); });
+
+	// Reconstruct Zlib object (header)
+    // + https://www.ietf.org/rfc/rfc1950.txt
+    // + https://stackoverflow.com/questions/9050260/what-does-a-zlib-header-look-like#17176881
+    //   [ DICTID (header) ][ Compressed Data ][ ADLER32 (checksum) ]
+    //   [2 bytes]          [ data ]           [ 4 bytes ]
+    // + (combine uint8arrays)  https://gist.github.com/72lions/4528834 
+    //
+	var ui8a_zlib = new Uint8Array(compressed_data.length + 2);
+	ui8a_zlib.set(new Uint8Array([0x78, 0x9C]), 0);  // Re-add zlib header, ignore checksum.
+	ui8a_zlib.set(compressed_data, 2);
+
+	var inflator = new pako.Inflate();
+	inflator.push(ui8a_zlib, true);
+	var uint8array = inflator.result;
+	return new TextDecoder("utf-8").decode(uint8array);
+}
+
 document.getElementById("saml_decode").addEventListener("click", function(){
 	var chunk = getInputStr("input");
 	var requestPos = chunk.indexOf("SAMLRequest");
@@ -203,9 +242,11 @@ document.getElementById("saml_decode").addEventListener("click", function(){
 	{
 		chunk = chunk.split("SAMLRequest=")[1].split("&")[0];
 	}
-	var partC = RawDeflate.inflate(atob(decodeURIComponent(chunk)));
+
+	var partC = inflateFromSaml2(decodeURIComponent(chunk));
 	setOutputStr("output", formatXml(partC));
 });
+
 
 /// JWT
 document.getElementById("jwt_decode").addEventListener("click", function(){
@@ -224,8 +265,12 @@ document.getElementById("jwt_decode").addEventListener("click", function(){
 });
 
 document.getElementById("beautify_json").addEventListener("click", function(){
-	var input = JSON.parse(getInputStr("input"));
-	setOutputStr("output", beautifyJson(input));
+	try {
+		var input = JSON.parse(getInputStr("input"));
+		setOutputStr("output", beautifyJson(input));
+	} catch (error) {
+		setOutputStr("output", error);
+	}
 });
 
 
