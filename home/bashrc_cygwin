@@ -1,3 +1,12 @@
+# Things to do for Cygwin:
+# * Copy files: bash_profile, dir_color, gitconfig
+# * bashrc, vimrc:  source <bashrc|vimrc>
+# * inputrc: $include <inputrc>
+#
+# * Add apt-cyg -- https://github.com/transcode-open/apt-cyg
+# * Add "noacl" to /etc/fstab file -- Use Windows' ACL instead
+#  
+
 
 function _my_source()
 {
@@ -18,6 +27,7 @@ PS1="\[\033[36m\][\T]\[\033[32m\]@${USER} \W $ \[\033[0m\]"
 # addToPATH /home/kittipong/xyz
 
 # Alias
+alias open='cygstart'
 alias sounds='control mmsys.cpl sounds'
 alias ssh2cos7='ssh root@192.168.211.128'
 
