@@ -22,7 +22,7 @@ set ruler           " show current row and column numbers
 set backspace=2     " make backspace work like most other apps
 set number          " line number
 
-set term=builtin_ansi " fix arrow keys
+"set term=builtin_ansi " fix arrow keys
 
 " Disable beep, and show visual beep instead
 " http://vim.wikia.com/wiki/Disable_beeping
@@ -48,9 +48,11 @@ set laststatus=2    " always show status line
 " Syntax highlight setting
 " colorscheme list are in "/usr/share/vim/vim*/colors"
 syntax on            " syntax highlight
+set hlsearch         " enable term highlight
 colorscheme evening  " vim color scheme
 hi Search cterm=NONE ctermfg=yellow ctermbg=green
-
+"colorscheme desert   " vim color scheme
+"hi Search cterm=NONE ctermfg=white ctermbg=red
 
 "autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
