@@ -22,7 +22,8 @@ fi
 ###PS1="\[\033]0;$MSYSTEM:\w\007\033[32m\]\e[0;36m[\T][\u@\h]\e[m \[\033[33m\w \033[0m\] \n$ "
 ###PS1="\[\033[36m\][\$(date +%H:%M:%S)] \[\033[32m\][\w]$ \[\033[0m\]"
 ###PS1="\[\033[36m\][\$(date +%H:%M:%S)]\[\033[32m\] \w $ \[\033[0m\]"
-PS1="\[\033[36m\][\T]\[\033[32m\] \w $ \[\033[0m\]"
+###PS1="\[\033[36m\][\T]\[\033[32m\] \w $ \[\033[0m\]"
+PS1="\[\e[1;32m\]\H\[\e[0m\] :: \[\e[1;30m\]\d\[\e[0m\] \t :: \[\e[1;33m\]\w\n\[\e[1;34m\]\u $ \[\033[0m\]"
 
 # Undo escaping $ in a bash4+
 # * http://askubuntu.com/questions/70750/how-to-get-bash-to-stop-escaping-during-tab-completion
