@@ -28,6 +28,15 @@
 #divout button {
 	width: 150px;
 }
+
+button {
+	margin: 3px 1px;
+}
+
+button.none {
+	visibility: hidden;
+}
+
 </style>
 </head>
 <body>
@@ -38,21 +47,26 @@
 	<br />
 	<button id="encode_base64" type="button">Encode Base64</button>
 	<button id="decode_base64" type="button">Decode Base64</button>
+	<button class="none" type="button" disabled>...</button>
 	<button id="encode_base64_urlsafe" type="button">Encode Base64 URL Safe</button>
 	<button id="decode_base64_urlsafe" type="button">Decode Base64 URL Safe</button>
 	<br />
 	<button id="encode_url" type="button">URI Encode</button>
 	<button id="decode_url" type="button">URI Decode</button>
-	<button id="none" type="button" disabled>&#8656; No encode/decode<code>[<strong>:/;?</strong>]</code></button>
+	<button class="note" type="button" disabled>&#8656; No encode/decode<code>[<strong>:/;?</strong>]</code></button>
 	<!--
 	<span>&#8656; No encode/decode: <code>[<strong>:/;?</strong>]</code></span>
 	-->
 	<button id="encode_url_component" type="button">URI Component Encode</button>
 	<button id="decode_url_component" type="button">URI Component Decode</button>
 	<br />
-	<button id="saml_decode" type="button">Decode SAML</button>
+	<button id="saml_encode" type="button">Encode SAML (GET)</button>
+	<button id="saml_decode" type="button">Decode SAML (GET)</button>
+	<button class="none" type="button" disabled>...</button>
 	<button id="jwt_decode" type="button">Decode JWT</button>
 	<button id="beautify_json" type="button">Beautify Json</button>
+	<br />
+	
 </div>
 
 <div id="divout">
@@ -244,7 +258,32 @@ document.getElementById("saml_decode").addEventListener("click", function(){
 	}
 
 	var partC = inflateFromSaml2(decodeURIComponent(chunk));
-	setOutputStr("output", formatXml(partC));
+	partC = "/////////////////\n" 
+		+ "/// RAW\n"
+		+ "/////////////////\n"
+		+ partC + "\n\n\n"
+		+ "/////////////////\n"
+		+ "/// Prettified\n"
+		+ "/////////////////\n"
+		+ formatXml(partC) + "\n\n\n";
+
+	setOutputStr("output", partC);
+	//setOutputStr("output", formatXml(partC));
+});
+
+document.getElementById("saml_encode").addEventListener("click", function(){
+	var request = getInputStr("input");
+	//var partC = encodeURIComponent(deflateToSaml2(request));
+	var partC = deflateToSaml2(request);
+	partC = "/////////////////\n" 
+		+ "/// RAW\n"
+		+ "/////////////////\n"
+		+ partC + "\n\n\n"
+		+ "/////////////////\n"
+		+ "/// URI-Encoded\n"
+		+ "/////////////////\n"
+		+ encodeURIComponent(partC) + "\n\n\n";
+	setOutputStr("output", partC);
 });
 
 
