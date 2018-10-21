@@ -41,6 +41,7 @@ set -o ignoreeof
 CMDTEMP=$(command -v setterm)
 if [ "${CMDTEMP}" != "" ]; then
   setterm -blength 0
+  ##setterm blength 0
 fi;
 
 

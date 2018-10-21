@@ -7,34 +7,34 @@
 
 <style>
 #input {
-	width: 90%;
-	height: 150px;
+    width: 90%;
+    height: 150px;
 }
 #input.min { 
-	height: 40px;
+    height: 40px;
 }
 
 #output {
-	width: 90%;
-	height: 250px;
+    width: 90%;
+    height: 250px;
 }
 #output.max {
-	height: 360px;
+    height: 360px;
 }
 
 #divin button {
-	width: 200px;
+    width: 200px;
 }
 #divout button {
-	width: 150px;
+    width: 150px;
 }
 
 button {
-	margin: 3px 1px;
+    margin: 3px 1px;
 }
 
 button.none {
-	visibility: hidden;
+    visibility: hidden;
 }
 
 </style>
@@ -42,36 +42,36 @@ button.none {
 <body>
 
 <div id="divin">
-	<h3>INPUT: <button id="toggle_textarea_size" type="button">Toggle Display</button></h3>
-	<textarea id="input" class="textarea-dim" spellcheck="false">lZHRS8MwEMb%2FlZL3tU1aSxfWQnEMBhVlnXvwRUJ2c4H2UnPp8M%2B3rYrzRRHu5bj7vu%2Fyy4pU14pe%0AVoM%2F4w5eByAfvHUtkvyYFGxwKK0iQxJVByS9lk11V0sRxrJ31lttWxZUROC8sXhrkYYOXAPuYjQ8%0A7uqCnb3vSUZRa18MLgz6EK3zFkNtu2gy25jWj5Lmfj%2FmR1NyPa2yYD32BtVk%2FIcNkY3MsZ%2FtBAs2%0A1mmYX1Wwk2oJWLBdF%2ByZ8%2BQkVJbCMUl5luTLZa5jkas4S7NEJHxcowdFZC7wLSQaYIvkFfqCiZhn%0Ai3gssReJ5Km8ycOM508sOICj%2BdARDStXM0A5i90109%2BRqi%2BQrPwftlV0HVh%2Btj%2B%2FtnwH</textarea>
-	<br />
-	<button id="encode_base64" type="button">Encode Base64</button>
-	<button id="decode_base64" type="button">Decode Base64</button>
-	<button class="none" type="button" disabled>...</button>
-	<button id="encode_base64_urlsafe" type="button">Encode Base64 URL Safe</button>
-	<button id="decode_base64_urlsafe" type="button">Decode Base64 URL Safe</button>
-	<br />
-	<button id="encode_url" type="button">URI Encode</button>
-	<button id="decode_url" type="button">URI Decode</button>
-	<button class="note" type="button" disabled>&#8656; No encode/decode<code>[<strong>:/;?</strong>]</code></button>
-	<!--
-	<span>&#8656; No encode/decode: <code>[<strong>:/;?</strong>]</code></span>
-	-->
-	<button id="encode_url_component" type="button">URI Component Encode</button>
-	<button id="decode_url_component" type="button">URI Component Decode</button>
-	<br />
-	<button id="saml_encode" type="button">Encode SAML (GET)</button>
-	<button id="saml_decode" type="button">Decode SAML (GET)</button>
-	<button class="none" type="button" disabled>...</button>
-	<button id="jwt_decode" type="button">Decode JWT</button>
-	<button id="beautify_json" type="button">Beautify Json</button>
-	<br />
-	
+    <h3>INPUT: <button id="toggle_textarea_size" type="button">Toggle Display</button></h3>
+    <textarea id="input" class="textarea-dim" spellcheck="false">lZHRS8MwEMb%2FlZL3tU1aSxfWQnEMBhVlnXvwRUJ2c4H2UnPp8M%2B3rYrzRRHu5bj7vu%2Fyy4pU14pe%0AVoM%2F4w5eByAfvHUtkvyYFGxwKK0iQxJVByS9lk11V0sRxrJ31lttWxZUROC8sXhrkYYOXAPuYjQ8%0A7uqCnb3vSUZRa18MLgz6EK3zFkNtu2gy25jWj5Lmfj%2FmR1NyPa2yYD32BtVk%2FIcNkY3MsZ%2FtBAs2%0A1mmYX1Wwk2oJWLBdF%2ByZ8%2BQkVJbCMUl5luTLZa5jkas4S7NEJHxcowdFZC7wLSQaYIvkFfqCiZhn%0Ai3gssReJ5Km8ycOM508sOICj%2BdARDStXM0A5i90109%2BRqi%2BQrPwftlV0HVh%2Btj%2B%2FtnwH</textarea>
+    <br />
+    <button id="encode_base64" type="button">Encode Base64</button>
+    <button id="decode_base64" type="button">Decode Base64</button>
+    <button class="none" type="button" disabled>...</button>
+    <button id="encode_base64_urlsafe" type="button">Encode Base64 URL Safe</button>
+    <button id="decode_base64_urlsafe" type="button">Decode Base64 URL Safe</button>
+    <br />
+    <button id="encode_url" type="button">URI Encode</button>
+    <button id="decode_url" type="button">URI Decode</button>
+    <button class="note" type="button" disabled>&#8656; No encode/decode<code>[<strong>:/;?</strong>]</code></button>
+    <!--
+    <span>&#8656; No encode/decode: <code>[<strong>:/;?</strong>]</code></span>
+    -->
+    <button id="encode_url_component" type="button">URI Component Encode</button>
+    <button id="decode_url_component" type="button">URI Component Decode</button>
+    <br />
+    <button id="saml_encode" type="button">Encode SAML (GET)</button>
+    <button id="saml_decode" type="button">Decode SAML (GET)</button>
+    <button class="none" type="button" disabled>...</button>
+    <button id="jwt_decode" type="button">Decode JWT</button>
+    <button id="beautify_json" type="button">Beautify Json</button>
+    <br />
+    
 </div>
 
 <div id="divout">
-	<h3>OUTPUT: <button id="copy_to_input" type="button">Copy To Input</button></h3>
-	<textarea id="output" class="textarea-dim" spellcheck="false"></textarea>
+    <h3>OUTPUT: <button id="copy_to_input" type="button">Copy To Input</button></h3>
+    <textarea id="output" class="textarea-dim" spellcheck="false"></textarea>
 </div>
 
 <div id="divinfo">
@@ -106,111 +106,142 @@ Version 1.0
 //<![CDATA[
 
 function getInputStr(objId) {
-	return document.getElementById(objId).value;
+    var value = document.getElementById(objId).value;
+    if (typeof value === 'string' || value instanceof String) {
+        value = value.trim();
+    }
+    return value;
 }
 
 function setOutputStr(objId, objValue) {
-	document.getElementById(objId).innerHTML = htmlEncode(objValue);
-	toggleDisplay();
+    document.getElementById(objId).innerHTML = htmlEncode(objValue);
+    toggleDisplay();
 }
 
 // http://stackoverflow.com/questions/1219860/html-encoding-in-javascript-jquery
 function htmlEncode( html ) {
-	return document.createElement( 'a' ).appendChild( 
-		document.createTextNode( html ) ).parentNode.innerHTML;
+    return document.createElement( 'a' ).appendChild( 
+        document.createTextNode( html ) ).parentNode.innerHTML;
 };
 
 function htmlDecode( html ) {
-	var a = document.createElement( 'a' ); a.innerHTML = html;
-	return a.textContent;
+    var a = document.createElement( 'a' ); a.innerHTML = html;
+    return a.textContent;
 };
 
 // formatXml by Darin Dimitrov -- http://stackoverflow.com/questions/376373/pretty-printing-xml-with-javascript
 // NOTE: replaced jquery with forEach()
 function formatXml(xml) {
-	var formatted = '';
-	var reg = /(>)(<)(\/*)/g;
-	xml = xml.replace(reg, '$1\r\n$2$3');
+    var formatted = '';
+    var reg = /(>)(<)(\/*)/g;
+    xml = xml.replace(reg, '$1\r\n$2$3');
 
-	reg = /("|')\s+([^"']+)?/g;
-	xml = xml.replace(reg, '$1\r\  $2');
-	var pad = 0;
-	xml.split('\r\n').forEach(function(element, index, array) {
-		var indent = 0;
-		if (element.match( /.+<\/\w[^>]*>$/ )) {
-			indent = 0;
-		} else if (element.match( /^<\/\w/ )) {
-			if (pad != 0) {
-				pad -= 1;
-			}
-		} else if (element.match( /^<\w[^>]*[^\/]>.*$/ )) {
-			indent = 1;
-		} else {
-			indent = 0;
-		}
-		var padding = '';
-		for (var i = 0; i < pad; i++) {
-			padding += '  ';
-		}
-		formatted += padding + element + '\r\n';
-		pad += indent;
-	});
-	return formatted;
+    reg = /("|')\s+([^"']+)?/g;
+    xml = xml.replace(reg, '$1\r\  $2');
+    var pad = 0;
+    xml.split('\r\n').forEach(function(element, index, array) {
+        var indent = 0;
+        if (element.match( /.+<\/\w[^>]*>$/ )) {
+            indent = 0;
+        } else if (element.match( /^<\/\w/ )) {
+            if (pad != 0) {
+                pad -= 1;
+            }
+        } else if (element.match( /^<\w[^>]*[^\/]>.*$/ )) {
+            indent = 1;
+        } else {
+            indent = 0;
+        }
+        var padding = '';
+        for (var i = 0; i < pad; i++) {
+            padding += '  ';
+        }
+        formatted += padding + element + '\r\n';
+        pad += indent;
+    });
+    return formatted;
+}
+
+
+/// https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding
+function b64EncodeUnicode(str) {
+    // first we use encodeURIComponent to get percent-encoded UTF-8,
+    // then we convert the percent encodings into raw bytes which
+    // can be fed into btoa.
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+        return String.fromCharCode(parseInt(p1, 16))
+    }))
+}
+
+function b64DecodeUnicode(str) {
+     // Going backwards: from bytestream, to percent-encoding, to original string.
+     return decodeURIComponent(Array.prototype.map.call(atob(str), function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+    }).join(''))
 }
 
 
 function encodeBase64Url(str){
-	return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
+    var str = b64EncodeUnicode(str);
+    return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
 }
+
 function decodeBase64Url(str){
-	str = (str + '===').slice(0, str.length + (str.length % 4));
-	return str.replace(/-/g, '+').replace(/_/g, '/');
+    var str = b64DecodeUnicode(str);
+    str = (str + '===').slice(0, str.length + (str.length % 4));
+    return str.replace(/-/g, '+').replace(/_/g, '/');
 }
+
 function beautifyJson(jsObj){
-	return JSON.stringify(jsObj, null, 2); 
+    return JSON.stringify(jsObj, null, 2); 
 }
+
 function resetDisplay() {
-	document.getElementById("input").classList.remove("min");
-	document.getElementById("output").classList.remove("max");
+    document.getElementById("input").classList.remove("min");
+    document.getElementById("output").classList.remove("max");
 }
+
 function toggleDisplay() {
-	document.getElementById("input").classList.toggle("min");
-	document.getElementById("output").classList.toggle("max");
+    document.getElementById("input").classList.toggle("min");
+    document.getElementById("output").classList.toggle("max");
 }
+
 
 
 /// BASE64
 document.getElementById("encode_base64").addEventListener("click", function(){
-	setOutputStr("output", btoa(getInputStr("input")));
+    try {
+        setOutputStr("output", b64EncodeUnicode(getInputStr("input")));
+    } catch(err) {
+        setOutputStr("output", err);
+    }
 });
 document.getElementById("decode_base64").addEventListener("click", function(){
-	var output = "";
-	try {
-		output = atob(getInputStr("input"));
-	} catch (err) {
-		output = "Error: " + err.message;
-	}
-	setOutputStr("output", output);
+    try {
+        setOutputStr("output", b64DecodeUnicode(getInputStr("input")));
+    } catch(err) {
+        setOutputStr("output", err);
+    }
 });
 document.getElementById("encode_base64_urlsafe").addEventListener("click", function(){
-	setOutputStr("output", encodeBase64Url(getInputStr("input")));
+    setOutputStr("output", encodeBase64Url(getInputStr("input")));
 });
 document.getElementById("decode_base64_urlsafe").addEventListener("click", function(){
-	setOutputStr("output", decodeBase64Url(getInputStr("input")));
+    setOutputStr("output", decodeBase64Url(getInputStr("input")));
 });
 
 /// URI
 document.getElementById("encode_url").addEventListener("click", function(){
-	setOutputStr("output", encodeURI(getInputStr("input")));
+    setOutputStr("output", encodeURI(getInputStr("input")));
 });
 document.getElementById("decode_url").addEventListener("click", function(){
-	setOutputStr("output", decodeURI(getInputStr("input")));
+    setOutputStr("output", decodeURI(getInputStr("input")));
 });
 document.getElementById("encode_url_component").addEventListener("click", function(){
-	setOutputStr("output", encodeURIComponent(getInputStr("input")));
+    setOutputStr("output", encodeURIComponent(getInputStr("input")));
 });
 document.getElementById("decode_url_component").addEventListener("click", function(){
-	setOutputStr("output", decodeURIComponent(getInputStr("input")));
+    setOutputStr("output", decodeURIComponent(getInputStr("input")));
 });
 
 /// SAML2
@@ -218,110 +249,110 @@ document.getElementById("decode_url_component").addEventListener("click", functi
 //  * pako.js -- https://github.com/nodeca/pako
 function deflateToSaml2(xml_input)
 {
-	var uint8array = new TextEncoder("utf-8").encode(xml_input);
-	var deflator = new pako.Deflate();
-	deflator.push(uint8array, true);       // add data chuck, and true as the end.
-	var ui8a_zlib_data = deflator.result;
-	var compressed_data = ui8a_zlib_data.subarray(2, ui8a_zlib_data.length-4);  // Remove header and adler32
-	var b64_ascii = btoa(String.fromCharCode.apply(null, compressed_data));
-	return b64_ascii;
+    var uint8array = new TextEncoder("utf-8").encode(xml_input);
+    var deflator = new pako.Deflate();
+    deflator.push(uint8array, true);       // add data chuck, and true as the end.
+    var ui8a_zlib_data = deflator.result;
+    var compressed_data = ui8a_zlib_data.subarray(2, ui8a_zlib_data.length-4);  // Remove header and adler32
+    var b64_ascii = btoa(String.fromCharCode.apply(null, compressed_data));
+    return b64_ascii;
 }
 
 function inflateFromSaml2(b64_input)
 {
-	// Decode base64 and convert to int
-	var compressed_data = atob(b64_input).split("").map(function(c) { return c.charCodeAt(0); });
+    // Decode base64 and convert to int
+    var compressed_data = atob(b64_input).split("").map(function(c) { return c.charCodeAt(0); });
 
-	// Reconstruct Zlib object (header)
-	// + https://www.ietf.org/rfc/rfc1950.txt
-	// + https://stackoverflow.com/questions/9050260/what-does-a-zlib-header-look-like#17176881
-	//   [ DICTID (header) ][ Compressed Data ][ ADLER32 (checksum) ]
-	//   [2 bytes]          [ data ]           [ 4 bytes ]
-	// + (combine uint8arrays)  https://gist.github.com/72lions/4528834 
-	//
-	var ui8a_zlib = new Uint8Array(compressed_data.length + 2);
-	ui8a_zlib.set(new Uint8Array([0x78, 0x9C]), 0);  // Re-add zlib header, ignore checksum.
-	ui8a_zlib.set(compressed_data, 2);
+    // Reconstruct Zlib object (header)
+    // + https://www.ietf.org/rfc/rfc1950.txt
+    // + https://stackoverflow.com/questions/9050260/what-does-a-zlib-header-look-like#17176881
+    //   [ DICTID (header) ][ Compressed Data ][ ADLER32 (checksum) ]
+    //   [2 bytes]          [ data ]           [ 4 bytes ]
+    // + (combine uint8arrays)  https://gist.github.com/72lions/4528834 
+    //
+    var ui8a_zlib = new Uint8Array(compressed_data.length + 2);
+    ui8a_zlib.set(new Uint8Array([0x78, 0x9C]), 0);  // Re-add zlib header, ignore checksum.
+    ui8a_zlib.set(compressed_data, 2);
 
-	var inflator = new pako.Inflate();
-	inflator.push(ui8a_zlib, true);
-	var uint8array = inflator.result;
-	return new TextDecoder("utf-8").decode(uint8array);
+    var inflator = new pako.Inflate();
+    inflator.push(ui8a_zlib, true);
+    var uint8array = inflator.result;
+    return new TextDecoder("utf-8").decode(uint8array);
 }
 
 document.getElementById("saml_decode").addEventListener("click", function(){
-	var chunk = getInputStr("input");
-	var requestPos = chunk.indexOf("SAMLRequest");
-	if (requestPos > 0)
-	{
-		chunk = chunk.split("SAMLRequest=")[1].split("&")[0];
-	}
+    var chunk = getInputStr("input");
+    var requestPos = chunk.indexOf("SAMLRequest");
+    if (requestPos > 0)
+    {
+        chunk = chunk.split("SAMLRequest=")[1].split("&")[0];
+    }
 
-	var partC = inflateFromSaml2(decodeURIComponent(chunk));
-	partC = "/////////////////\n" 
-		+ "/// RAW\n"
-		+ "/////////////////\n"
-		+ partC + "\n\n\n"
-		+ "/////////////////\n"
-		+ "/// Prettified\n"
-		+ "/////////////////\n"
-		+ formatXml(partC) + "\n\n\n";
+    var partC = inflateFromSaml2(decodeURIComponent(chunk));
+    partC = "/////////////////\n" 
+        + "/// RAW\n"
+        + "/////////////////\n"
+        + partC + "\n\n\n"
+        + "/////////////////\n"
+        + "/// Prettified\n"
+        + "/////////////////\n"
+        + formatXml(partC) + "\n\n\n";
 
-	setOutputStr("output", partC);
-	//setOutputStr("output", formatXml(partC));
+    setOutputStr("output", partC);
+    //setOutputStr("output", formatXml(partC));
 });
 
 document.getElementById("saml_encode").addEventListener("click", function(){
-	var request = getInputStr("input");
-	//var partC = encodeURIComponent(deflateToSaml2(request));
-	var partC = deflateToSaml2(request);
-	partC = "/////////////////\n" 
-		+ "/// RAW\n"
-		+ "/////////////////\n"
-		+ partC + "\n\n\n"
-		+ "/////////////////\n"
-		+ "/// URI-Encoded\n"
-		+ "/////////////////\n"
-		+ encodeURIComponent(partC) + "\n\n\n";
-	setOutputStr("output", partC);
+    var request = getInputStr("input");
+    //var partC = encodeURIComponent(deflateToSaml2(request));
+    var partC = deflateToSaml2(request);
+    partC = "/////////////////\n" 
+        + "/// RAW\n"
+        + "/////////////////\n"
+        + partC + "\n\n\n"
+        + "/////////////////\n"
+        + "/// URI-Encoded\n"
+        + "/////////////////\n"
+        + encodeURIComponent(partC) + "\n\n\n";
+    setOutputStr("output", partC);
 });
 
 
 /// JWT
 document.getElementById("jwt_decode").addEventListener("click", function(){
-	var chunk = getInputStr("input").split('.');
-	var output = "Invalid JWT data";
-	if (chunk.length == 3)
-	{
-		var header = JSON.parse(atob(decodeBase64Url(chunk[0])));
-		var body   = JSON.parse(atob(decodeBase64Url(chunk[1])));
-		output = "///// HEADER\n"
-			+ beautifyJson(header) + "\n"
-			+ "///// PAYLOAD\n"
-			+ beautifyJson(body) + "\n";
-	}
-	setOutputStr("output", output);
+    var chunk = getInputStr("input").split('.');
+    var output = "Invalid JWT data";
+    if (chunk.length == 3)
+    {
+        var header = JSON.parse(atob(decodeBase64Url(chunk[0])));
+        var body   = JSON.parse(atob(decodeBase64Url(chunk[1])));
+        output = "///// HEADER\n"
+            + beautifyJson(header) + "\n"
+            + "///// PAYLOAD\n"
+            + beautifyJson(body) + "\n";
+    }
+    setOutputStr("output", output);
 });
 
 document.getElementById("beautify_json").addEventListener("click", function(){
-	try {
-		var input = JSON.parse(getInputStr("input"));
-		setOutputStr("output", beautifyJson(input));
-	} catch (error) {
-		setOutputStr("output", error);
-	}
+    try {
+        var input = JSON.parse(getInputStr("input"));
+        setOutputStr("output", beautifyJson(input));
+    } catch (error) {
+        setOutputStr("output", error);
+    }
 });
 
 
 /// INPUT & OUTPUT
 document.getElementById("input").addEventListener("click", function(){
-	resetDisplay();
+    resetDisplay();
 });
 document.getElementById("toggle_textarea_size").addEventListener("click", function(){
-	toggleDisplay();
+    toggleDisplay();
 });
 document.getElementById("copy_to_input").addEventListener("click", function(){
-	document.getElementById("input").value = document.getElementById("output").value;
+    document.getElementById("input").value = document.getElementById("output").value;
 });
 
 //]]>
