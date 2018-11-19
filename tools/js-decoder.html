@@ -326,8 +326,8 @@ document.getElementById("jwt_decode").addEventListener("click", function(){
     var output = "Invalid JWT data";
     if (chunk.length == 3)
     {
-        var header = JSON.parse(decodeBase64Url(chunk[0]));
-        var body   = JSON.parse(decodeBase64Url(chunk[1]));
+        var header = JSON.parse(b64DecodeUnicode(chunk[0]));
+        var body   = JSON.parse(b64DecodeUnicode(chunk[1]));
         output = "///// HEADER\n"
             + beautifyJson(header) + "\n"
             + "///// PAYLOAD\n"
