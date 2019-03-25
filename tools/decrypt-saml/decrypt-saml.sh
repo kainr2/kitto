@@ -3,6 +3,15 @@
 # https://crypto.stackexchange.com/questions/51713/decrypting-encrypted-saml-attributes-with-openssl
 # https://security.stackexchange.com/questions/188457/how-can-i-use-openssl-to-decrypt-aes-encrypted-data-using-the-key-and-initializa
 #
+# Encrypt public key:
+# * http://krisjordan.com/essays/encrypting-with-rsa-key-pairs
+# > echo <32-bytes> | openssl rsautl -encrypt -pubin -inkey <publicKeyFile> | base64 -w0 > cipherKey
+#
+# Encrypt with AES:
+# * https://wiki.openssl.org/index.php/Enc
+# > KEY=$(base64 -d cipherKey | xxd -p -c256)
+# > openssl aes-256-cbc -e ... ?
+#
 
 # Decrypted RSA PRIVATE KEY
 SP_PRIVATE_KEY="spPrivateKeyFile.key"
@@ -11,7 +20,6 @@ function decrypt_aes_help()
 {
     echo "decrypt-saml -- Decrypt SAML Response"
     echo "Usage:  decrypt-saml.sh <key_file> <data_file>"
-    echo 
 }
 
 function decrypt_aes() 
@@ -44,6 +52,7 @@ data_file=$2
 
 if [ -z "$1" -o -z "$2" ]; then
     decrypt_aes_help
+    echo 
     exit 1
 fi;
 
@@ -51,16 +60,19 @@ if [ ! -f "$key_file" ]; then
     echo "ERROR key_file does not exist: $key_file"
     echo
     decrypt_aes_help
+    echo 
     exit 1
 elif [ ! -f "$data_file" ]; then
     echo "ERROR data_file does not exist: $data_file"
     echo
     decrypt_aes_help
+    echo 
     exit 1
 elif [ ! -f "${SP_PRIVATE_KEY}" ]; then
     echo "ERROR SP_PRIVATE_KEY does not exist: $SP_PRIVATE_KEY"
     echo
     decrypt_aes_help
+    echo 
     exit 1
 fi;
 
