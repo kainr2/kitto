@@ -18,11 +18,14 @@
     padding-left: 10px;
 }
 
+#sidebar button {
+    width: 90%;
+}
+
 #main_content {
     margin-left: 160px; /* Same as the width of the sidebar */
     padding: 0px 10px;
 }
-
 
 #input {
     width: 90%;
@@ -34,7 +37,7 @@
 
 #output {
     width: 90%;
-    height: 250px;
+    height: 100%;
 }
 #output.max {
     height: 360px;
@@ -49,65 +52,120 @@
 
 button {
     margin: 3px 1px;
+    height: 32px;
+    border: 2px solid #AAAAAA;
+    border-radius: 12px;
+    color: #FFFFFF;
+    background-color: #777777;
+}
+
+button:active,
+button:focus {
+    box-shadow: inset 0px 0px 10px #CCCCCC;
+    outline: none;
+}
+
+button.note {
+    border-style: none none none solid;
+    border-left: 15px solid #000000;
+    border-radius: 0px;
+    color: #FFFFFF;
+    background-color: #777777;
 }
 
 button.none {
     visibility: hidden;
 }
 
+button.base64 {
+    background-color: #7ACA33;
+}
+
+button.beautify {
+    background-color: #5cb85c;
+}
+
+button.protocol {
+    background-color: #337ACA;
+}
+
+button.uri {
+    background-color: #CA7A33;
+}
+
+textarea {
+    border-radius: 5px;
+}
+
+/** Dark Theme **/
+body.dark-theme {
+    background-color: #2F4F4F;
+    color: #FFFFFF;
+}
+
+body.dark-theme pre {
+    color: #FFFFFF;
+}
+
+textarea.dark-theme,
+#sidebar.dark-theme {
+    background-color: #696969;
+    color: #FFFFFF;
+}
+
 </style>
 </head>
-<body>
-
-
+<body id="body">
 
 <div id="sidebar">
     <h3>SIDEBAR:</h3>
+    <button id="clear_entry" type="button">Clear Entry</button> 
     <button id="load_entry" type="button">Load Entry</button> 
-    <button id="save_entry" type="button">Save Entry</button> 
+    <button id="save_entry" type="button">Save Entry</button>
+    <div id="entry_list"></div>
 </div>
 
 <div id="main_content">
     <div id="divin">
-        <h3>INPUT: 
-            <button id="reset_display" type="button">Reset Display</button>
-            <button id="expand_output" type="button">Expand Output</button>
-        </h3>
+        <a href="https://rawgit.com/kainr2/kitto/master/tools/js-decoder.html"><pre>https://rawgit.com/kainr2/kitto/master/tools/js-decoder.html</pre></a>
         <textarea id="input" class="textarea-dim" spellcheck="false">lZHRS8MwEMb%2FlZL3tU1aSxfWQnEMBhVlnXvwRUJ2c4H2UnPp8M%2B3rYrzRRHu5bj7vu%2Fyy4pU14pe%0AVoM%2F4w5eByAfvHUtkvyYFGxwKK0iQxJVByS9lk11V0sRxrJ31lttWxZUROC8sXhrkYYOXAPuYjQ8%0A7uqCnb3vSUZRa18MLgz6EK3zFkNtu2gy25jWj5Lmfj%2FmR1NyPa2yYD32BtVk%2FIcNkY3MsZ%2FtBAs2%0A1mmYX1Wwk2oJWLBdF%2ByZ8%2BQkVJbCMUl5luTLZa5jkas4S7NEJHxcowdFZC7wLSQaYIvkFfqCiZhn%0Ai3gssReJ5Km8ycOM508sOICj%2BdARDStXM0A5i90109%2BRqi%2BQrPwftlV0HVh%2Btj%2B%2FtnwH</textarea>
         <br />
-        <button id="encode_base64" type="button">Encode Base64</button>
-        <button id="decode_base64" type="button">Decode Base64</button>
-        <button class="none" type="button" disabled>...</button>
-        <button id="encode_base64_urlsafe" type="button">Encode Base64 URL Safe</button>
-        <button id="decode_base64_urlsafe" type="button">Decode Base64 URL Safe</button>
+        <button id="encode_base64" type="button" class="base64">Encode Base64</button>
+        <button id="decode_base64" type="button" class="base64">Decode Base64</button>
+        <button type="button" class="none" disabled>...</button>
+        <button id="encode_base64_urlsafe" type="button" class="base64">Encode Base64 URL Safe</button>
+        <button id="decode_base64_urlsafe" type="button" class="base64">Decode Base64 URL Safe</button>
         <br />
-        <button id="encode_url" type="button">URI Encode</button>
-        <button id="decode_url" type="button">URI Decode</button>
-        <button class="note" type="button" disabled>&#8656; No encode/decode<code>[<strong>:/;?</strong>]</code></button>
+        <button id="encode_url" type="button" class="uri">URI Encode</button>
+        <button id="decode_url" type="button" class="uri">URI Decode</button>
+        <button type="button" class="note" disabled>&#8656; No encode/decode<code>[<strong>:/;?</strong>]</code></button>
         <!--
         <span>&#8656; No encode/decode: <code>[<strong>:/;?</strong>]</code></span>
         -->
-        <button id="encode_url_component" type="button">URI Component Encode</button>
-        <button id="decode_url_component" type="button">URI Component Decode</button>
+        <button id="encode_url_component" type="button" class="uri">URI Component Encode</button>
+        <button id="decode_url_component" type="button" class="uri">URI Component Decode</button>
         <br />
-        <button id="saml_encode" type="button">Encode SAML (GET)</button>
-        <button id="saml_decode" type="button">Decode SAML (GET)</button>
-            <button id="jwt_decode" type="button">Decode JWT</button>
-        <button id="beautify_json" type="button">Beautify Json</button>
-        <button id="beautify_xml" type="button">Beautify XML</button>
+        <button id="saml_encode" type="button" class="protocol">Encode SAML (GET)</button>
+        <button id="saml_decode" type="button" class="protocol">Decode SAML (GET)</button>
+        <button id="jwt_decode" type="button" class="protocol">Decode JWT</button>
+        <button id="beautify_json" type="button" class="beautify">Beautify Json</button>
+        <button id="beautify_xml" type="button" class="beautify">Beautify XML</button>
         <br />
         
     </div>
 
     <div id="divout">
         <h3>OUTPUT: 
-        	<button id="copy_to_input" type="button">Copy To Input</button>
+            <button id="copy_to_input" type="button">Copy To Input</button>
+            <button id="dark_theme" type="button">Dark Theme</button>
         </h3>
         <textarea id="output" class="textarea-dim" spellcheck="false"></textarea>
     </div>
 
     <div id="divinfo">
-    <pre>
+    <pre>Changelog
+    Version 1.2.1
+    * Update UI - color buttons and dark theme
     Version 1.2.0
     * Fixed deflation of SAML and JWT
     Version 1.1.0
@@ -122,16 +180,12 @@ button.none {
     </pre>
     </div>
 </div>
-
-
 </body>
 </html>
-
 
 <script src="./lib/pako.js"></script>
 <script type="text/javascript">
 //<![CDATA[
-
 function getString(objId) {
     var value = document.getElementById(objId).value;
     if (typeof value === 'string' || value instanceof String) {
@@ -238,8 +292,6 @@ function toggleDisplay() {
     document.getElementById("input").classList.toggle("min");
     document.getElementById("output").classList.toggle("max");
 }
-
-
 
 /// BASE64
 document.getElementById("encode_base64").addEventListener("click", function(){
@@ -392,16 +444,36 @@ document.getElementById("copy_to_input").addEventListener("click", function(){
     document.getElementById("input").value = document.getElementById("output").value;
 });
 
-document.getElementById("reset_display").addEventListener("click", function(){
-    document.getElementById("input").style.height = null;
-    document.getElementById("output").style.height = null;
+document.getElementById("dark_theme").addEventListener("click", function(){
+    var cssTheme = "dark-theme";
+    document.getElementById("body").classList.toggle(cssTheme);
+    document.getElementById("sidebar").classList.toggle(cssTheme);
+    document.getElementById("input").classList.toggle(cssTheme);
+    document.getElementById("output").classList.toggle(cssTheme);
 });
 
-document.getElementById("expand_output").addEventListener("click", function() {
-    document.getElementById("output").style.height = "100%";
-});
+function clearEntry() 
+{
+    sessionStorage.clear();
+}
 
+function displayEntry()
+{
+    var myNode = document.getElementById("entry_list");
+    while (myNode.firstChild)
+    {
+        myNode.removeChild(myNode.firstChild);
+    }
 
+    var storage = sessionStorage;
+    for (var i=0; i<storage.length; i++) 
+    {
+        var key = storage.key(i);
+        var newDiv = document.createElement("div");
+        newDiv.innerHTML = key;
+        myNode.appendChild(newDiv);
+    }
+}
 
 function loadEntry() 
 {
@@ -410,7 +482,7 @@ function loadEntry()
     {
         var key = storage.key(i);
         var savedEntry = storage.getItem(key);
-        console.log("savedEntry: ");
+        console.log("loading: ");
         console.log("* key " + key);
         console.log("* value " + savedEntry);
     }
@@ -418,9 +490,25 @@ function loadEntry()
 
 function saveEntry() 
 {
+    // Save the value
+    var milliseconds = (new Date).getTime();
     var storage = sessionStorage;
-    storage.setItem(getInputStr(), getString("output"));
+    var value = JSON.stringify({
+        "input": getInputStr(),
+        "output": getString("output")
+    });
+    storage.setItem(milliseconds, value);
+
+    // Add to the list
+    displayEntry();
+    console.log("saving: ");
+    console.log("* key: " + milliseconds);
+    console.log("* value: " + value);
 }
+
+document.getElementById("clear_entry").addEventListener("click", function(){
+    clearEntry();
+});
 
 document.getElementById("load_entry").addEventListener("click", function(){
     loadEntry();
@@ -430,6 +518,8 @@ document.getElementById("save_entry").addEventListener("click", function() {
     saveEntry();
 });
 
+
+displayEntry();
 
 //]]>
 </script>
