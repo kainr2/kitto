@@ -437,21 +437,22 @@ document.getElementById("beautify_xml").addEventListener("click", function(){
 
 
 /// INPUT & OUTPUT
-// document.getElementById("input").addEventListener("click", function(){
-//     resetDisplay();
-// });
-document.getElementById("copy_to_input").addEventListener("click", function(){
-    document.getElementById("input").value = document.getElementById("output").value;
-});
-
-document.getElementById("dark_theme").addEventListener("click", function(){
+function darkTheme()
+{
     var cssTheme = "dark-theme";
     document.getElementById("body").classList.toggle(cssTheme);
     document.getElementById("sidebar").classList.toggle(cssTheme);
     document.getElementById("input").classList.toggle(cssTheme);
     document.getElementById("output").classList.toggle(cssTheme);
+}
+
+document.getElementById("copy_to_input").addEventListener("click", function(){
+    document.getElementById("input").value = document.getElementById("output").value;
 });
 
+document.getElementById("dark_theme").addEventListener("click", darkTheme);
+
+/// SIDEBAR
 function clearEntry() 
 {
     sessionStorage.clear();
@@ -520,6 +521,6 @@ document.getElementById("save_entry").addEventListener("click", function() {
 
 
 displayEntry();
-
+darkTheme();
 //]]>
 </script>
