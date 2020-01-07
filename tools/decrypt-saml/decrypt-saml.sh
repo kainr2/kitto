@@ -14,12 +14,17 @@
 #
 
 # Decrypted RSA PRIVATE KEY
-SP_PRIVATE_KEY="spPrivateKeyFile.key"
+#SP_PRIVATE_KEY="spPrivateKeyFile.key"
 
 function decrypt_aes_help()
 {
     echo "decrypt-saml -- Decrypt SAML Response"
-    echo "Usage:  decrypt-saml.sh <key_file> <data_file>"
+    echo "Usage:  decrypt-saml.sh <private_key> <cipher_key_file> <cipher_data_file>"
+    echo ""
+    echo "  private_key      -- decrypted RSA SHA-256 private key"
+    echo "  cipher_key_file  -- cipher key in SAML response"
+    echo "  cipher_data_file -- cipher data in SAML response"
+
 }
 
 function decrypt_aes() 
@@ -44,11 +49,14 @@ function decrypt_aes()
 
     #echo ">>> Decrypt RESPONSE"
     openssl aes-${AES_KEY_SIZE}-cbc -d -nopad -K $KEY -iv $IV -in cipherdata.bin | cut -b 17- 
+
+    rm cipherkey.bin plainkey.bin cipherdata.bin
 }
 
 
-key_file=$1
-data_file=$2
+SP_PRIVATE_KEY=$1
+key_file=$2
+data_file=$3
 
 if [ -z "$1" -o -z "$2" ]; then
     decrypt_aes_help
