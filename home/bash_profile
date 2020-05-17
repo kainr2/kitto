@@ -1,7 +1,0 @@
-# NOTE: Just copy this bash_profile to your folder
-if [ -f ${HOME}/.bashrc ]; then
-   source ${HOME}/.bashrc
-fi
-
-# Export PATH.  Put here, so it won't recursively reload in .bashrc
-export PATH="/bin:/usr/local/bin:/sbin:/usr/sbin:$PATH"
